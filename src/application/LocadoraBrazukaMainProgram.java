@@ -24,21 +24,23 @@ public class LocadoraBrazukaMainProgram {
 		Date pInicio = sdf.parse(sc.nextLine());
 		System.out.print("Término locação: (dd/MM/yyyy HH:ss)");
 		Date pTermino = sdf.parse(sc.nextLine());
-		
+
 		VeiculoAlugado veiculoAlugado = new VeiculoAlugado(pInicio, pTermino, new Veiculo(pModelo));
 		System.out.println("Entre com o preço por hora: ");
 		double precoPorHora = sc.nextDouble();
 		System.out.println("Entre com o preço por Dia: ");
 		double precoPorDia = sc.nextDouble();
-		
+
 		AluguelService aluguelService = new AluguelService(precoPorDia, precoPorHora, new TaxaBrasilService());
 		aluguelService.processarFatura(veiculoAlugado);
-		
+
 		System.out.println("Fatura:");
-		System.out.println("Pagamento básico: " + String.format("%.2f", veiculoAlugado.getNotaPagamento().getPagamentoBasico()));
+		System.out.println(
+				"Pagamento básico: " + String.format("%.2f", veiculoAlugado.getNotaPagamento().getPagamentoBasico()));
 		System.out.println("Taxa: " + String.format("%.2f", veiculoAlugado.getNotaPagamento().getTaxaAluguel()));
-		System.out.println("Pagamento total: " + String.format("%.2f", veiculoAlugado.getNotaPagamento().getPagamentoTotal()));
-		
+		System.out.println(
+				"Pagamento total: " + String.format("%.2f", veiculoAlugado.getNotaPagamento().getPagamentoTotal()));
+
 		sc.close();
 
 	}
